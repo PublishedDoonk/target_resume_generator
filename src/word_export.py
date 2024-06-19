@@ -17,7 +17,7 @@ def add_bulleted_paragraph(doc: Document, text: str, level: int = 0):
 
 @st.cache(allow_output_mutation=True)
 def export_to_word(title: str, user_data: dict) -> None:
-    """Export the user's generated target_resume to a Word document"""
+    """Export the user's generated target_resume to a Word document."""
     doc = Document()
     style = doc.styles['Normal']
     font = style.font
@@ -113,27 +113,24 @@ Email: {user_data['personal_info']['email']}
         add_bulleted_paragraph(doc, skill.split('\t')[-1], 1)
         
     achievements = user_data['achievements']
-    if not achievements:
-        return
-    achievements = [a.split('\t')[-1] for a in achievements.split('\n')]
-    
-    achievements_header = doc.add_paragraph()
-    achievements_header_format = achievements_header.paragraph_format
-    achievements_header_format.space_after = Pt(6.9)
-    achievements_header_format.space_before = Pt(24.2)
-    achievements_header_run = achievements_header.add_run('ACHIEVEMENTS')
-    achievements_header_run.font.size = Pt(12)
-    achievements_header_run.bold = True
-    
-    for achievement in achievements:
-        add_bulleted_paragraph(doc, achievement, 1)
+    if achievements:
+        achievements = [a.split('\t')[-1] for a in achievements.split('\n')]
+        
+        achievements_header = doc.add_paragraph()
+        achievements_header_format = achievements_header.paragraph_format
+        achievements_header_format.space_after = Pt(6.9)
+        achievements_header_format.space_before = Pt(24.2)
+        achievements_header_run = achievements_header.add_run('ACHIEVEMENTS')
+        achievements_header_run.font.size = Pt(12)
+        achievements_header_run.bold = True
+        
+        for achievement in achievements:
+            add_bulleted_paragraph(doc, achievement, 1)
     
     document_obj: BytesIO = BytesIO()
     
     doc.save(document_obj)
     document_obj.seek(0)
-
-    print("DOCUMENT OBJECT VALUE", document_obj.getvalue())
     
     return document_obj
     
