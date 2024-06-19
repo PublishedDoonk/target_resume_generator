@@ -202,16 +202,16 @@ def generate_resume_section(user_data: dict):
             user_data['target_resume']['skills'] = generate_resume_skills(format_all_master_data(user_data), job_description)        
             update_execution_data(user_data)
             
-    doc_export = export_to_word('target_resume', user_data)
+    #doc_export = 
     
-    if doc_export is not None:
+    #if doc_export is not None:
     #with open(filename, 'rb') as file:
-        btn = st.download_button(
-            label='Download Resume',
-            data=doc_export,
-            file_name='target_resume.docx',
-            mime='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-        )
+    btn = st.download_button(
+        label='Download Resume',
+        data=export_to_word('target_resume', user_data),
+        file_name='target_resume.docx',
+        mime='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    )
     #os.remove(filename)    
         
     #if st.button('Export to Word'):
