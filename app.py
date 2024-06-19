@@ -205,8 +205,11 @@ def generate_resume_section(user_data: dict):
         # target resume skills
         if st.button('Regenerate Skills'):
             user_data['target_resume']['skills'] = generate_resume_skills(format_all_master_data(user_data), job_description)        
-            update_execution_data(user_data)    
-        user_data['target_resume']['skills'] = st.text_area('Skills', user_data['target_resume']['skills'], key="target resume skills")
+            update_execution_data(user_data)
+        if isinstance(user_data['target_resume']['skills'], list):
+            user_data['target_resume']['skills'] = st.text_area('Skills', '•\t' + '\n•\t'.join(user_data['target_resume']['skills']), key="target resume skills")
+        else:
+            user_data['target_resume']['skills'] = st.text_area('Skills', user_data['target_resume']['skills'], key="target resume skills")
             
     #doc_export = 
     
