@@ -1,5 +1,6 @@
 import json
 import keyring
+import streamlit as st
 
 """
 This is the base class for all language models in Magic Mink. It contains the basic structure for all language models
