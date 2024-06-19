@@ -2,6 +2,7 @@ from docx import Document
 from docx.shared import Pt
 from docx.oxml.ns import qn
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT, WD_LINE_SPACING
+from io import BytesIO
 import re
 
 def add_bulleted_paragraph(doc: Document, text: str, level: int = 0):
@@ -125,8 +126,11 @@ Email: {user_data['personal_info']['email']}
     for achievement in achievements:
         add_bulleted_paragraph(doc, achievement, 1)
     
-    doc.save(f'{title}.docx')
+    document_obj: BytesIO = BytesIO()
     
-    return f'{title}.docx'
+    doc.save(document_obj)
+    document_obj.seek(0)
+    
+    return document_obj
     
     
