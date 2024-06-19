@@ -27,7 +27,7 @@ class LanguageModel:
     def import_key_from_keyring(self, key: str) -> str:
         # returns the value for the key {key} from the keyring
         # this should be used to load API key for the model, if needed
-        return keyring.get_password('magic_mink', key)
+        return keyring.get_password('target_resume_generator', key)
 
     def get_instructions(self, instructions: str, sample_outputs: list | None, schema: dict | None):
         # formats the instructions, sample_outputs, schema, and previous messages in a uniform way
