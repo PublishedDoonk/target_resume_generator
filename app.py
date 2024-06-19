@@ -206,7 +206,7 @@ def generate_resume_section(user_data: dict):
     
     #if doc_export is not None:
     #with open(filename, 'rb') as file:
-    btn = st.download_button(
+    st.download_button(
         label='Download Resume',
         data=export_to_word('target_resume', user_data),
         file_name='target_resume.docx',
