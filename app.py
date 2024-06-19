@@ -220,11 +220,12 @@ def display_session_state_buttons():
     
     with col1:
         st.download_button("Save Session", save_session_state(), f"session_state_{int(datetime.now().timestamp())}.json", "Save the current session state to a file.")
-        
-    uploaded_file = st.file_uploader("Load Session", type="json")
-    if uploaded_file is not None:
-        st.session_state.user_data = json.load(uploaded_file)
-        st.success("Session state loaded successfully.")
+    
+    with col2:
+        uploaded_file = st.file_uploader("Load Session", type="json")
+        if uploaded_file is not None:
+            st.session_state.user_data = json.load(uploaded_file)
+            st.success("Session state loaded successfully.")
         
 
 def display_interface(user_data: dict):
