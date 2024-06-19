@@ -204,13 +204,14 @@ def generate_resume_section(user_data: dict):
             
     doc_export = export_to_word('target_resume', user_data)
     
+    if doc_export is not None:
     #with open(filename, 'rb') as file:
-    btn = st.download_button(
-        label='Download Resume',
-        data=doc_export,
-        file_name='target_resume.docx',
-        mime='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-    )
+        btn = st.download_button(
+            label='Download Resume',
+            data=doc_export,
+            file_name='target_resume.docx',
+            mime='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        )
     #os.remove(filename)    
         
     #if st.button('Export to Word'):
