@@ -185,22 +185,29 @@ def generate_resume_section(user_data: dict):
         personal_info_lines: list[str] = format_personal_info(user_data)
         for line in personal_info_lines:
             st.write(line)
-        user_data['target_resume']['summary'] = st.text_area('Summary', user_data['target_resume']['summary'])
+        
+        # target resume summary
         if st.button('Regenerate Summary'):
             user_data['target_resume']['summary'] = generate_resume_summary(format_all_master_data(user_data), job_description)
             update_execution_data(user_data)
+        user_data['target_resume']['summary'] = st.text_area('Summary', user_data['target_resume']['summary'])
+        
+        # target resume professional history
         for i, job in enumerate(user_data['work_info']['jobs']):
             job_lines: list[str] = format_job_header(job)
             for line in job_lines:
                 st.write(line)
-            st.text_area('Bullets', '•\t' + '\n•\t'.join(user_data['target_resume']['bullets'][i]), key=f'Job Bullets {i}')
             if st.button(f'Regenerate Job Bullets', key=f'Regenerate Job Bullets {i}'):
                 user_data['target_resume']['bullets'][i] = generate_job_bullets(format_job(job), job_description)
                 update_execution_data(user_data)
-        user_data['target_resume']['skills'] = st.text_area('Skills', '•\t' + '\n•\t'.join(user_data['target_resume']['skills']), key="target resume skills")
+            st.text_area('Bullets', '•\t' + '\n•\t'.join(user_data['target_resume']['bullets'][i]), key=f'Job Bullets {i}')
+        
+        # target resume skills
         if st.button('Regenerate Skills'):
             user_data['target_resume']['skills'] = generate_resume_skills(format_all_master_data(user_data), job_description)        
-            update_execution_data(user_data)
+            update_execution_data(user_data)    
+        user_data['target_resume']['skills'] = st.text_area('Skills', '•\t' + '\n•\t'.join(user_data['target_resume']['skills']), key="target resume skills")
+        
             
     #doc_export = 
     
