@@ -1,0 +1,4 @@
+python-docx==1.1.2
+streamlit==1.35.0
+groq==0.4.2
+keyring==24.3.0
