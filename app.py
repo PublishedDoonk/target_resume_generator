@@ -14,20 +14,26 @@ def save_data_exists():
 
 def initialize_execution_data():
     """Initialize the execution data."""
-    if not os.path.exists('./execution_data'):
-        os.mkdir('./execution_data')
-    with open('./execution_data/data.json', 'w') as fp:
-        json.dump({}, fp)
+    if 'user_data' not in st.session_state:
+        st.session_state.user_data = {}
+    #if not os.path.exists('./execution_data'):
+    #    os.mkdir('./execution_data')
+    #with open('./execution_data/data.json', 'w') as fp:
+    #    json.dump({}, fp)
         
 def update_execution_data(data: dict):
     """Update the execution data."""
-    with open('./execution_data/data.json', 'w') as fp:
-        json.dump(data, fp)
+    #if 'user_data' not in st.session_state:
+    #    st.session_state.user_data = {}
+    st.session_state.user_data = data
+    #with open('./execution_data/data.json', 'w') as fp:
+    #    json.dump(data, fp)
 
 def load_execution_data():
     """Load the execution data."""
-    with open('./execution_data/data.json', 'r') as fp:
-        return json.load(fp)
+    return st.session_state.user_data
+    #with open('./execution_data/data.json', 'r') as fp:
+    #    return json.load(fp)
 
 def update_personal_info(user_data: dict):
     """Populate the personal information expander with the user's personal information."""
