@@ -133,7 +133,7 @@ Email: {user_data['personal_info']['email']}
     doc.save(document_obj)
     document_obj.seek(0)
 
-    print(document_obj.getvalue())
+    print("DOCUMENT OBJECT VALUE", document_obj.getvalue())
     
     return document_obj
     
