@@ -105,7 +105,7 @@ Email: {user_data['personal_info']['email']}
     skills_header_run.bold = True
     
     skills = user_data['target_resume']['skills']
-    skills = skills.split('\n')
+    #skills = skills.split('\n')
     
     for skill in skills:
         add_bulleted_paragraph(doc, skill.split('\t')[-1], 1)
