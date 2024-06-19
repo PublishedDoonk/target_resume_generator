@@ -213,20 +213,23 @@ def generate_resume_section(user_data: dict):
     #if st.button('Export to Word'):
     #    export_to_word('target_resume', user_data)
 
-def display_session_state_buttons():
+def display_session_state_buttons(user_data: dict):
     _, col1 = st.columns([7, 1])
     
     @st.cache(allow_output_mutation=True)
     def save_session_state():
-        return json.dumps(st.session_state.user_data)
+        return json.dumps(user_data, indent=4)
     
     with col1:
         st.download_button("Save Session", save_session_state(), f"session_state_{int(datetime.now().timestamp())}.json", "Save the current session state to a file.")
     
     uploaded_file = st.file_uploader("Load Session", type="json")
     if uploaded_file is not None:
-        st.session_state.user_data = json.load(uploaded_file)
-        print(st.session_state.user_data)
+        uploaded_json: dict = json.load(uploaded_file)
+        for k, v in uploaded_json.items():
+            user_data[k] = v
+        #st.session_state.user_data = json.load(uploaded_file)
+        #print(st.session_state.user_data)
         
         st.success("Session state loaded successfully.")
         
@@ -234,7 +237,7 @@ def display_session_state_buttons():
 def display_interface(user_data: dict):
     """Display the user interface."""
     st.set_page_config(page_title="Free Resume GPT", page_icon="💼", layout="wide", initial_sidebar_state="expanded")
-    display_session_state_buttons()
+    display_session_state_buttons(user_data)
     st.title('Resume Builder')
     st.write('Use AI to generate targeted resumes for free! Fill out the form below to get started. If something doesn\'t load properly, press R to refresh the page.')
     st.write('1. Fill out as much as possible from your master resume.')
