@@ -197,7 +197,7 @@ def generate_resume_section(user_data: dict):
             if st.button(f'Regenerate Job Bullets', key=f'Regenerate Job Bullets {i}'):
                 user_data['target_resume']['bullets'][i] = generate_job_bullets(format_job(job), job_description)
                 update_execution_data(user_data)
-        user_data['target_resume']['skills'] = st.text_area('Skills', '•\t' + '\n•\t'.join(user_data['target_resume']['skills']))
+        user_data['target_resume']['skills'] = st.text_area('Skills', '•\t' + '\n•\t'.join(user_data['target_resume']['skills']), key="target resume skills")
         if st.button('Regenerate Skills'):
             user_data['target_resume']['skills'] = generate_resume_skills(format_all_master_data(user_data), job_description)        
             update_execution_data(user_data)
