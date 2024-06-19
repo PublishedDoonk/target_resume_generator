@@ -17,8 +17,7 @@ def add_bulleted_paragraph(doc: Document, text: str, level: int = 0):
 
 @st.cache(allow_output_mutation=True)
 def export_to_word(title: str, user_data: dict) -> None:
-    """Export the user's generated target_resume to a Word document."""
-    print(user_data)
+    """Export the user's generated target_resume to a Word document
     doc = Document()
     style = doc.styles['Normal']
     font = style.font
@@ -133,6 +132,8 @@ Email: {user_data['personal_info']['email']}
     
     doc.save(document_obj)
     document_obj.seek(0)
+
+    print(document_obj.getvalue())
     
     return document_obj
     
