@@ -227,6 +227,8 @@ def display_session_state_buttons():
     if uploaded_file is not None:
         st.session_state.user_data = json.load(uploaded_file)
         st.success("Session state loaded successfully.")
+    else:
+        st.write('None')
         
 
 def display_interface(user_data: dict):
