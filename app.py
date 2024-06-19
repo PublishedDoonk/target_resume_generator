@@ -201,15 +201,17 @@ def generate_resume_section(user_data: dict):
         if st.button('Regenerate Skills'):
             user_data['target_resume']['skills'] = generate_resume_skills(format_all_master_data(user_data), job_description)        
             update_execution_data(user_data)
-    filename = export_to_word('target_resume', user_data)
-    with open(filename, 'rb') as file:
-        btn = st.download_button(
-            label='Download Resume',
-            data=file,
-            file_name='target_resume.docx',
-            mime='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-        )
-    os.remove(filename)    
+            
+    doc_export = export_to_word('target_resume', user_data)
+    
+    #with open(filename, 'rb') as file:
+    btn = st.download_button(
+        label='Download Resume',
+        data=doc_export,
+        file_name='target_resume.docx',
+        mime='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    )
+    #os.remove(filename)    
         
     #if st.button('Export to Word'):
     #    export_to_word('target_resume', user_data)
