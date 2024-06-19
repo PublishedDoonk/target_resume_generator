@@ -51,7 +51,7 @@ Email: {user_data['personal_info']['email']}
     p2_header_run = paragraph2.add_run('SUMMARY: ')
     p2_header_run.font.size = Pt(12)
     p2_header_run.bold = True
-    p2_summary_run = paragraph2.add_run(user_data['personal_info']['summary'].strip())
+    p2_summary_run = paragraph2.add_run(user_data['target_resume']['summary'].strip())
     
     education_header = doc.add_paragraph()
     education_header_format = education_header.paragraph_format
