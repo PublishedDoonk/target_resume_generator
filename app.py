@@ -1,5 +1,6 @@
 import streamlit as st
 from datetime import date, datetime
+import keyring
 from src import *
 import json
 import os
@@ -266,6 +267,8 @@ def display_interface(user_data: dict):
 
 class App:
     def __init__(self):
+        
+        keyring.set_password('target_resume_generator', 'GROQ_API', st.secrets['GROQ_API'])
         if not save_data_exists():
             initialize_execution_data()
         self.data = load_execution_data()
