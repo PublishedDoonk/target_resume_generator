@@ -51,7 +51,7 @@ Email: {user_data['personal_info']['email']}
     p2_header_run = paragraph2.add_run('SUMMARY: ')
     p2_header_run.font.size = Pt(12)
     p2_header_run.bold = True
-    p2_summary_run = paragraph2.add_run(user_data['personal_info']['summary'])
+    p2_summary_run = paragraph2.add_run(user_data['personal_info']['summary'].strip())
     
     education_header = doc.add_paragraph()
     education_header_format = education_header.paragraph_format
@@ -71,7 +71,7 @@ Email: {user_data['personal_info']['email']}
         school_info = f"""{school['school']}
 {school['degree']}, {school['grad_date']}
 {school['major']}
-{school['gpa']}"""
+{school['gpa']}""".strip()
         school_run = school_paragraph.add_run(school_info)
     
     jobs_header = doc.add_paragraph()
@@ -107,8 +107,6 @@ Email: {user_data['personal_info']['email']}
     skills_header_run.bold = True
     
     skills = user_data['target_resume']['skills'].split('\n')
-    #if isinstance(skills, str):
-    #    skills = skills.split('\n')
     
     for skill in skills:
         add_bulleted_paragraph(doc, skill.split('\t')[-1], 1)
