@@ -111,12 +111,14 @@ def update_work_info(user_data: dict):
     def add_job():
         """Add a new job to the work experience."""
         user_data['work_info']['jobs'].append({k: '' for k in ['company name', 'company city', 'company state', 'position', 'start_date', 'end_date', 'experience bullets']})
-        json.dump(user_data, open('./execution_data/data.json', 'w'))
+        update_execution_data(user_data)
+        #json.dump(user_data, open('./execution_data/data.json', 'w'))
         
     def remove_job(index: int) -> None:
         """Remove a job from the work experience."""
         user_data['work_info']['jobs'].pop(index)
-        json.dump(user_data, open('./execution_data/data.json', 'w'))
+        update_execution_data(user_data)
+        #json.dump(user_data, open('./execution_data/data.json', 'w'))
         
     for num, job in enumerate(user_data['work_info']['jobs']):
         st.write(f'Job {num+1}')
