@@ -212,7 +212,7 @@ def generate_resume_section(user_data: dict):
     #    export_to_word('target_resume', user_data)
 
 def display_session_state_buttons():
-    _, col1, col2 = st.columns([3, 1, 1])
+    col1, col2 = st.columns([1, 7])
     
     @st.cache(allow_output_mutation=True)
     def save_session_state():
@@ -230,11 +230,11 @@ def display_session_state_buttons():
 
 def display_interface(user_data: dict):
     """Display the user interface."""
+    display_session_state_buttons()
     st.set_page_config(page_title="Free Resume GPT", page_icon="💼", layout="wide", initial_sidebar_state="expanded")
     st.title('Resume Builder')
     st.write('Use AI to generate targeted resumes for free! Fill out the form below to get started. If something doesn\'t load properly, press R to refresh the page.')
     st.write('1. Fill out as much as possible from your master resume.')
-    display_session_state_buttons()
     with st.expander('Personal Information', expanded=False):
         update_personal_info(user_data)
     if not user_data['personal_info']['name']:
