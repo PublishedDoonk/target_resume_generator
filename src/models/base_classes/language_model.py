@@ -29,7 +29,7 @@ class LanguageModel:
         # returns the value for the key {key} from the keyring
         # this should be used to load API key for the model, if needed
         #return keyring.get_password('target_resume_generator', key)
-        return st.secrets(key)
+        return st.secrets[key]
 
     def get_instructions(self, instructions: str, sample_outputs: list | None, schema: dict | None):
         # formats the instructions, sample_outputs, schema, and previous messages in a uniform way
