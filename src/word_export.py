@@ -2,6 +2,7 @@ from docx import Document
 from docx.shared import Pt
 from docx.oxml.ns import qn
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT, WD_LINE_SPACING
+import streamlit as st
 from io import BytesIO
 import re
 
@@ -14,6 +15,7 @@ def add_bulleted_paragraph(doc: Document, text: str, level: int = 0):
     paragraph_format.left_indent = Pt(18 * level)
     run = paragraph.add_run(text)
 
+@st.cache(allow_output_mutation=True)
 def export_to_word(title: str, user_data: dict) -> None:
     """Export the user's generated target_resume to a Word document."""
     doc = Document()
