@@ -230,8 +230,8 @@ def display_session_state_buttons():
 
 def display_interface(user_data: dict):
     """Display the user interface."""
-    display_session_state_buttons()
     st.set_page_config(page_title="Free Resume GPT", page_icon="💼", layout="wide", initial_sidebar_state="expanded")
+    display_session_state_buttons()
     st.title('Resume Builder')
     st.write('Use AI to generate targeted resumes for free! Fill out the form below to get started. If something doesn\'t load properly, press R to refresh the page.')
     st.write('1. Fill out as much as possible from your master resume.')
