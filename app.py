@@ -234,7 +234,7 @@ def display_session_state_buttons(user_data: dict):
         return json.dumps(user_data, indent=4)
     
     with col1:
-        st.download_button("Save Session", save_session_state(), f"session_state_{int(datetime.now().timestamp())}.json", "Save the current session state to a file.")
+        st.download_button("⭳ Save Session", save_session_state(), f"session_state_{int(datetime.now().timestamp())}.json", "Save the current session state to a file.")
     
     uploaded_file = st.file_uploader("Load Session", type="json")
     if uploaded_file is not None:
